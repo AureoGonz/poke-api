@@ -14,7 +14,7 @@ public class PokemonList {
     private Long count;
     private String next;
     private String previous;
-    private List results;
+    private List<PokemonListItem> results;
 
     @Data
     @NoArgsConstructor
