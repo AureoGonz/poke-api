@@ -4,6 +4,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.triceracode.pokeapi.PokeApiService;
+import com.triceracode.pokeapi.enpoint.ability.EndpointAbility;
 import com.triceracode.pokeapi.enpoint.pokemon.EndpointPokemon;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -28,5 +29,10 @@ public class PokeApiServiceImp implements PokeApiService {
     @Override
     public EndpointPokemon pokemon() {
         return retrofit.create(EndpointPokemon.class);
+    }
+
+    @Override
+    public EndpointAbility ability() {
+        return retrofit.create(EndpointAbility.class);
     }
 }
