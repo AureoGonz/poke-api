@@ -8,12 +8,14 @@ import com.triceracode.pokeapi.enpoint.pokemon.EndpointPokemon;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.util.Objects;
+
 public class PokeApiServiceImp implements PokeApiService {
 
     private final Retrofit retrofit;
 
     public PokeApiServiceImp() {
-        String urlBase = System.getenv("POKE_API_URLBASE");
+        String urlBase = Objects.requireNonNullElse(System.getenv("POKE_API_URL"), "https://pokeapi.co/api/v2/");
         Gson gson = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                 .create();
