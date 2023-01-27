@@ -8,6 +8,9 @@ import com.triceracode.pokeapi.enpoint.ability.AbilityEndpoint;
 import com.triceracode.pokeapi.enpoint.berry.BerryEndpoint;
 import com.triceracode.pokeapi.enpoint.berry.firmness.BerryFirmnessEndpoint;
 import com.triceracode.pokeapi.enpoint.berry.flavor.BerryFlavorEndpoint;
+import com.triceracode.pokeapi.enpoint.contest.effect.ContestEffectEndpoint;
+import com.triceracode.pokeapi.enpoint.contest.supereffect.SuperContestEffectEndpoint;
+import com.triceracode.pokeapi.enpoint.contest.type.ContestTypeEndpoint;
 import com.triceracode.pokeapi.enpoint.pokemon.PokemonEndpoint;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -52,6 +55,21 @@ public class PokeApiServiceImp implements PokeApiService {
     @Override
     public BerryFlavorEndpoint berryFlavor() {
         return retrofit.create(BerryFlavorEndpoint.class);
+    }
+
+    @Override
+    public ContestTypeEndpoint contestType() {
+        return retrofit.create(ContestTypeEndpoint.class);
+    }
+
+    @Override
+    public ContestEffectEndpoint contestEffect() {
+        return retrofit.create(ContestEffectEndpoint.class);
+    }
+
+    @Override
+    public SuperContestEffectEndpoint superContestEffect() {
+        return retrofit.create(SuperContestEffectEndpoint.class);
     }
 
 }
