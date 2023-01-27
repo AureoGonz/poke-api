@@ -7,7 +7,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-public interface EndpointAbility {
+public interface AbilityEndpoint {
 
     @GET("ability")
     Call<ResourceBatch> list(@Query("limit") Long limit, @Query("offset") Long offset);

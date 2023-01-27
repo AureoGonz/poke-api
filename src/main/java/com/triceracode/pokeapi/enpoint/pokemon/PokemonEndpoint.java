@@ -6,7 +6,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 
-public interface EndpointPokemon {
+public interface PokemonEndpoint {
 
     @GET("pokemon")
     Call<ResourceBatch> list(@Query("limit") Long limit, @Query("offset") Long offset);

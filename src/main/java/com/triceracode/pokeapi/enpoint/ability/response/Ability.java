@@ -1,6 +1,5 @@
 package com.triceracode.pokeapi.enpoint.ability.response;
 
-import com.triceracode.pokeapi.commonModels.Effect;
 import com.triceracode.pokeapi.commonModels.Name;
 import com.triceracode.pokeapi.commonModels.NamedAPIResource;
 import com.triceracode.pokeapi.commonModels.VerboseEffect;

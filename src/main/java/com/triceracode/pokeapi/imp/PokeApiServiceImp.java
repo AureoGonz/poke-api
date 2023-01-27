@@ -4,8 +4,11 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.triceracode.pokeapi.PokeApiService;
-import com.triceracode.pokeapi.enpoint.ability.EndpointAbility;
-import com.triceracode.pokeapi.enpoint.pokemon.EndpointPokemon;
+import com.triceracode.pokeapi.enpoint.ability.AbilityEndpoint;
+import com.triceracode.pokeapi.enpoint.berry.BerryEndpoint;
+import com.triceracode.pokeapi.enpoint.berry.firmness.BerryFirmnessEndpoint;
+import com.triceracode.pokeapi.enpoint.berry.flavor.BerryFlavorEndpoint;
+import com.triceracode.pokeapi.enpoint.pokemon.PokemonEndpoint;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -27,12 +30,28 @@ public class PokeApiServiceImp implements PokeApiService {
     }
 
     @Override
-    public EndpointPokemon pokemon() {
-        return retrofit.create(EndpointPokemon.class);
+    public PokemonEndpoint pokemon() {
+        return retrofit.create(PokemonEndpoint.class);
     }
 
     @Override
-    public EndpointAbility ability() {
-        return retrofit.create(EndpointAbility.class);
+    public AbilityEndpoint ability() {
+        return retrofit.create(AbilityEndpoint.class);
     }
+
+    @Override
+    public BerryEndpoint berry() {
+        return retrofit.create(BerryEndpoint.class);
+    }
+
+    @Override
+    public BerryFirmnessEndpoint berryFirmness() {
+        return retrofit.create(BerryFirmnessEndpoint.class);
+    }
+
+    @Override
+    public BerryFlavorEndpoint berryFlavor() {
+        return retrofit.create(BerryFlavorEndpoint.class);
+    }
+
 }
