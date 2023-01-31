@@ -1,7 +1,7 @@
 package com.triceracode.pokeapi.endpoint.language;
 
 import com.triceracode.pokeapi.model.ResourceBatch;
-import com.triceracode.pokeapi.endpoint.language.model.Language;
+import com.triceracode.pokeapi.model.resource.language.Language;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;

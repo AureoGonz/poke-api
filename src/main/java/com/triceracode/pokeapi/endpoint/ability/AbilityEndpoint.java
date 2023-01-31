@@ -1,6 +1,6 @@
 package com.triceracode.pokeapi.endpoint.ability;
 
-import com.triceracode.pokeapi.endpoint.ability.model.Ability;
+import com.triceracode.pokeapi.model.resource.ability.Ability;
 import com.triceracode.pokeapi.model.ResourceBatch;
 import retrofit2.Call;
 import retrofit2.http.GET;
