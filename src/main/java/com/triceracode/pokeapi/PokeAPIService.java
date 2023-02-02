@@ -12,6 +12,10 @@ import com.triceracode.pokeapi.endpoint.encounter.EncounterConditionValueEndpoin
 import com.triceracode.pokeapi.endpoint.encounter.EncounterMethodEndpoint;
 import com.triceracode.pokeapi.endpoint.evolution.EvolutionChainEndpoint;
 import com.triceracode.pokeapi.endpoint.evolution.EvolutionTriggerEndpoint;
+import com.triceracode.pokeapi.endpoint.game.GenerationEndpoint;
+import com.triceracode.pokeapi.endpoint.game.PokedexEndpoint;
+import com.triceracode.pokeapi.endpoint.game.VersionEndpoint;
+import com.triceracode.pokeapi.endpoint.game.VersionGroupEndpoint;
 import com.triceracode.pokeapi.endpoint.language.LanguageEndpoint;
 import com.triceracode.pokeapi.endpoint.pokemon.PokemonEndpoint;
 
@@ -44,5 +48,13 @@ public interface PokeAPIService {
     EvolutionChainEndpoint evolutionChain();
 
     EvolutionTriggerEndpoint evolutionTrigger();
+
+    GenerationEndpoint generation();
+
+    PokedexEndpoint pokedex();
+
+    VersionEndpoint version();
+
+    VersionGroupEndpoint versionGroup();
 
 }

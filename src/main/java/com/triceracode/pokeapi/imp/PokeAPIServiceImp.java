@@ -16,6 +16,10 @@ import com.triceracode.pokeapi.endpoint.encounter.EncounterConditionValueEndpoin
 import com.triceracode.pokeapi.endpoint.encounter.EncounterMethodEndpoint;
 import com.triceracode.pokeapi.endpoint.evolution.EvolutionChainEndpoint;
 import com.triceracode.pokeapi.endpoint.evolution.EvolutionTriggerEndpoint;
+import com.triceracode.pokeapi.endpoint.game.GenerationEndpoint;
+import com.triceracode.pokeapi.endpoint.game.PokedexEndpoint;
+import com.triceracode.pokeapi.endpoint.game.VersionEndpoint;
+import com.triceracode.pokeapi.endpoint.game.VersionGroupEndpoint;
 import com.triceracode.pokeapi.endpoint.language.LanguageEndpoint;
 import com.triceracode.pokeapi.endpoint.pokemon.PokemonEndpoint;
 import retrofit2.Retrofit;
@@ -106,6 +110,26 @@ public class PokeAPIServiceImp implements PokeAPIService {
     @Override
     public EvolutionTriggerEndpoint evolutionTrigger() {
         return retrofit.create(EvolutionTriggerEndpoint.class);
+    }
+
+    @Override
+    public GenerationEndpoint generation() {
+        return retrofit.create(GenerationEndpoint.class);
+    }
+
+    @Override
+    public PokedexEndpoint pokedex() {
+        return retrofit.create(PokedexEndpoint.class);
+    }
+
+    @Override
+    public VersionEndpoint version() {
+        return retrofit.create(VersionEndpoint.class);
+    }
+
+    @Override
+    public VersionGroupEndpoint versionGroup() {
+        return retrofit.create(VersionGroupEndpoint.class);
     }
 
 }
