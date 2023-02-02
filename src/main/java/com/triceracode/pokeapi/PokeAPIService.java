@@ -10,6 +10,8 @@ import com.triceracode.pokeapi.endpoint.contest.ContestTypeEndpoint;
 import com.triceracode.pokeapi.endpoint.encounter.EncounterConditionEndpoint;
 import com.triceracode.pokeapi.endpoint.encounter.EncounterConditionValueEndpoint;
 import com.triceracode.pokeapi.endpoint.encounter.EncounterMethodEndpoint;
+import com.triceracode.pokeapi.endpoint.evolution.EvolutionChainEndpoint;
+import com.triceracode.pokeapi.endpoint.evolution.EvolutionTriggerEndpoint;
 import com.triceracode.pokeapi.endpoint.language.LanguageEndpoint;
 import com.triceracode.pokeapi.endpoint.pokemon.PokemonEndpoint;
 
@@ -38,5 +40,9 @@ public interface PokeAPIService {
     EncounterConditionEndpoint encounterCondition();
 
     EncounterConditionValueEndpoint encounterConditionValue();
+
+    EvolutionChainEndpoint evolutionChain();
+
+    EvolutionTriggerEndpoint evolutionTrigger();
 
 }
