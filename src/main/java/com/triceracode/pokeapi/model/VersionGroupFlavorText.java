@@ -1,11 +1,12 @@
 package com.triceracode.pokeapi.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.ToString;
+
+@ToString
+@Getter
 @AllArgsConstructor
 public class VersionGroupFlavorText {
 

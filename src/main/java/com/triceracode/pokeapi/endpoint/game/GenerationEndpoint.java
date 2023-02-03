@@ -9,10 +9,10 @@ import retrofit2.http.Query;
 
 public interface GenerationEndpoint {
 
-    @GET("generation")
+    @GET("generation/")
     Call<ResourceBatch> list(@Query("limit") Long limit, @Query("offset") Long offset);
 
-    @GET("generation")
+    @GET("generation/?limit=" + Long.MAX_VALUE + "&offset=0")
     Call<ResourceBatch> list();
 
     @GET("generation/{id}")

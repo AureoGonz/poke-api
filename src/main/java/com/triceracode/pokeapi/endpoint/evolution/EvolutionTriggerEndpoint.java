@@ -9,10 +9,10 @@ import retrofit2.http.Query;
 
 public interface EvolutionTriggerEndpoint {
 
-    @GET("evolution-trigger")
+    @GET("evolution-trigger/")
     Call<ResourceBatch> list(@Query("limit") Long limit, @Query("offset") Long offset);
 
-    @GET("evolution-trigger")
+    @GET("evolution-trigger/?limit=" + Long.MAX_VALUE + "&offset=0")
     Call<ResourceBatch> list();
 
     @GET("evolution-trigger/{id}")

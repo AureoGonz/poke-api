@@ -12,7 +12,7 @@ public interface ResourceEndpoint {
     @GET(".")
     Call<ResourceBatch> list(@Query("limit") Long limit, @Query("offset") Long offset);
 
-    @GET(".")
+    @GET("./?limit=" + Long.MAX_VALUE + "&offset=0")
     Call<ResourceBatch> list();
 
     @GET("{id}")

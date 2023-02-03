@@ -1,15 +1,27 @@
 package com.triceracode.pokeapi.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.ToString;
 
-@Data
-@NoArgsConstructor
+@ToString
+@Getter
 @AllArgsConstructor
 public class NamedAPIResource {
 
+    private Long id;
     private String name;
     private String url;
 
+    public Long getId() {
+        String[] chunk = this.url.split("/");
+        if(this.id == null) {
+            try {
+                this.id = Long.valueOf(chunk[chunk.length - 1]);
+            } catch (Exception ignore) {
+                return null;
+            }
+        }
+        return this.id;
+    }
 }

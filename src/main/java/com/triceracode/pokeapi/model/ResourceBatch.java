@@ -1,13 +1,13 @@
 package com.triceracode.pokeapi.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.util.List;
 
-@Data
-@NoArgsConstructor
+@ToString
+@Getter
 @AllArgsConstructor
 public class ResourceBatch {
 

@@ -9,10 +9,10 @@ import retrofit2.http.Query;
 
 public interface AbilityEndpoint {
 
-    @GET("ability")
+    @GET("ability/")
     Call<ResourceBatch> list(@Query("limit") Long limit, @Query("offset") Long offset);
 
-    @GET("ability")
+    @GET("ability/?limit=" + Long.MAX_VALUE + "&offset=0")
     Call<ResourceBatch> list();
 
     @GET("ability/{id}")
@@ -20,4 +20,5 @@ public interface AbilityEndpoint {
 
     @GET("ability/{name}")
     Call<Ability> byName(@Path("name") String name);
+
 }

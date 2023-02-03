@@ -7,6 +7,8 @@ import com.triceracode.pokeapi.endpoint.evolution.*;
 import com.triceracode.pokeapi.endpoint.game.*;
 import com.triceracode.pokeapi.endpoint.item.*;
 import com.triceracode.pokeapi.endpoint.language.*;
+import com.triceracode.pokeapi.endpoint.location.*;
+import com.triceracode.pokeapi.endpoint.machine.MachineEndpoint;
 import com.triceracode.pokeapi.endpoint.pokemon.*;
 
 public interface PokeAPIService {
@@ -54,5 +56,15 @@ public interface PokeAPIService {
     ItemCategoryEndpoint itemCategory();
 
     ItemPocketEndpoint itemPocket();
+
+    LocationEndpoint location();
+
+    LocationAreaEndpoint locationArea();
+
+    PalParkAreaEndpoint palParkArea();
+
+    RegionEndpoint region();
+
+    MachineEndpoint machine();
 
 }

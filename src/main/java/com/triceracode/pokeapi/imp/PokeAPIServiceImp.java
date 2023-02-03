@@ -3,7 +3,7 @@ package com.triceracode.pokeapi.imp;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.triceracode.pokeapi.PokeAPIConfig;
+import com.triceracode.pokeapi.config.PokeAPIConfig;
 import com.triceracode.pokeapi.PokeAPIService;
 import com.triceracode.pokeapi.endpoint.berry.*;
 import com.triceracode.pokeapi.endpoint.contest.*;
@@ -12,6 +12,8 @@ import com.triceracode.pokeapi.endpoint.evolution.*;
 import com.triceracode.pokeapi.endpoint.game.*;
 import com.triceracode.pokeapi.endpoint.item.*;
 import com.triceracode.pokeapi.endpoint.language.*;
+import com.triceracode.pokeapi.endpoint.location.*;
+import com.triceracode.pokeapi.endpoint.machine.MachineEndpoint;
 import com.triceracode.pokeapi.endpoint.pokemon.*;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
@@ -46,6 +48,11 @@ public class PokeAPIServiceImp implements PokeAPIService {
     private final ItemAttributeEndpoint itemAttributeEndpoint;
     private final ItemCategoryEndpoint itemCategoryEndpoint;
     private final ItemPocketEndpoint itemPocketEndpoint;
+    private final LocationEndpoint locationEndpoint;
+    private final LocationAreaEndpoint locationAreaEndpoint;
+    private final PalParkAreaEndpoint palParkAreaEndpoint;
+    private final RegionEndpoint regionEndpoint;
+    private final MachineEndpoint machineEndpoint;
 
     public PokeAPIServiceImp(PokeAPIConfig config) {
         String urlBase = Objects.requireNonNull(config.urlBase);
@@ -88,6 +95,11 @@ public class PokeAPIServiceImp implements PokeAPIService {
         this.itemAttributeEndpoint = this.retrofit.create(ItemAttributeEndpoint.class);
         this.itemCategoryEndpoint = this.retrofit.create(ItemCategoryEndpoint.class);
         this.itemPocketEndpoint = this.retrofit.create(ItemPocketEndpoint.class);
+        this.locationEndpoint = this.retrofit.create(LocationEndpoint.class);
+        this.locationAreaEndpoint = this.retrofit.create(LocationAreaEndpoint.class);
+        this.palParkAreaEndpoint = this.retrofit.create(PalParkAreaEndpoint.class);
+        this.regionEndpoint = this.retrofit.create(RegionEndpoint.class);
+        this.machineEndpoint = this.retrofit.create(MachineEndpoint.class);
     }
 
     public PokeAPIServiceImp() {
@@ -202,6 +214,31 @@ public class PokeAPIServiceImp implements PokeAPIService {
     @Override
     public ItemPocketEndpoint itemPocket() {
         return this.itemPocketEndpoint;
+    }
+
+    @Override
+    public LocationEndpoint location() {
+        return this.locationEndpoint;
+    }
+
+    @Override
+    public LocationAreaEndpoint locationArea() {
+        return this.locationAreaEndpoint;
+    }
+
+    @Override
+    public PalParkAreaEndpoint palParkArea() {
+        return this.palParkAreaEndpoint;
+    }
+
+    @Override
+    public RegionEndpoint region() {
+        return this.regionEndpoint;
+    }
+
+    @Override
+    public MachineEndpoint machine() {
+        return this.machineEndpoint;
     }
 
 }

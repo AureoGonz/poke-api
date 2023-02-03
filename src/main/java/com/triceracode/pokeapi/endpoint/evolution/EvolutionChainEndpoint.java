@@ -9,10 +9,10 @@ import retrofit2.http.Query;
 
 public interface EvolutionChainEndpoint {
 
-    @GET("evolution-chain")
+    @GET("evolution-chain/")
     Call<ResourceBatch> list(@Query("limit") Long limit, @Query("offset") Long offset);
 
-    @GET("evolution-chain")
+    @GET("evolution-chain/?limit=" + Long.MAX_VALUE + "&offset=0")
     Call<ResourceBatch> list();
 
     @GET("evolution-chain/{id}")

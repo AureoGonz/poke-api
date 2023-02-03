@@ -12,7 +12,7 @@ public interface EncounterConditionValueEndpoint {
     @GET("encounter-condition-value/")
     Call<ResourceBatch> list(@Query("limit") Long limit, @Query("offset") Long offset);
 
-    @GET("encounter-condition-value/")
+    @GET("encounter-condition-value/?limit=" + Long.MAX_VALUE + "&offset=0")
     Call<ResourceBatch> list();
 
     @GET("encounter-condition-value/{id}")

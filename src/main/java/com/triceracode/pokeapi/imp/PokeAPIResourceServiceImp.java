@@ -3,7 +3,7 @@ package com.triceracode.pokeapi.imp;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.triceracode.pokeapi.PokeAPIConfig;
+import com.triceracode.pokeapi.config.PokeAPIConfig;
 import com.triceracode.pokeapi.PokeAPIResourceService;
 import com.triceracode.pokeapi.endpoint.ResourceEndpoint;
 import com.triceracode.pokeapi.model.ResourceBatch;
@@ -28,17 +28,16 @@ public class PokeAPIResourceServiceImp implements PokeAPIResourceService {
     private final OkHttpClient okHttpClient;
 
     public PokeAPIResourceServiceImp(PokeAPIConfig config) {
-        this.baseUrl = Objects.requireNonNullElse(System.getenv("POKE_API_URL"), "https://pokeapi.co/api/v2/");
+        this.baseUrl = config.urlBase;
         this.gson = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                 .create();
-        String urlBase = Objects.requireNonNull(config.urlBase);
         Cache cache = null;
         if(config.cacheSize != null) {
             File cacheDir = new File(config.cacheDir);
             int cacheSize = config.cacheSize > 0 ? config.cacheSize : 10;
-            if(!cacheDir.exists()) cacheDir.mkdir();
-            cache = new Cache(cacheDir, cacheSize * 1024 * 1024);
+            if(!cacheDir.exists() && cacheDir.mkdir())
+                cache = new Cache(cacheDir, (long) cacheSize * 1024 * 1024);
         }
         okHttpClient = new OkHttpClient.Builder()
                 .cache(cache).build();
@@ -58,8 +57,11 @@ public class PokeAPIResourceServiceImp implements PokeAPIResourceService {
 
     @Override
     public ResourceBatch list(Class<? extends Endpointable> clazz) throws IOException {
-        return list(clazz, Long.MAX_VALUE, 0L);
-    }
+        ResourceEndpoint resourceEndpoint = getResourceEndpoint(clazz);
+        Response<ResourceBatch> resourceBatchResponse = resourceEndpoint.list().execute();
+        if(resourceBatchResponse.isSuccessful()) {
+            return resourceBatchResponse.body();
+        } return null;    }
 
     @Override
     public ResourceBatch list(Class<? extends Endpointable> clazz, Long limit, Long offset) throws IOException {

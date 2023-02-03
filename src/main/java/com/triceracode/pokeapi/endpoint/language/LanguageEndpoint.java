@@ -9,10 +9,10 @@ import retrofit2.http.Query;
 
 public interface LanguageEndpoint {
 
-    @GET("language")
+    @GET("language/")
     Call<ResourceBatch> list(@Query("limit") Long limit, @Query("offset") Long offset);
 
-    @GET("language")
+    @GET("language/?limit=" + Long.MAX_VALUE + "&offset=0")
     Call<ResourceBatch> list();
 
     @GET("language/{id}")

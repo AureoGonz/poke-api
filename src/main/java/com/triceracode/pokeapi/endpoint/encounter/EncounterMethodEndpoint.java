@@ -12,7 +12,7 @@ public interface EncounterMethodEndpoint {
     @GET("encounter-method/")
     Call<ResourceBatch> list(@Query("limit") Long limit, @Query("offset") Long offset);
 
-    @GET("encounter-method/")
+    @GET("encounter-method/?limit=" + Long.MAX_VALUE + "&offset=0")
     Call<ResourceBatch> list();
 
     @GET("encounter-method/{id}")

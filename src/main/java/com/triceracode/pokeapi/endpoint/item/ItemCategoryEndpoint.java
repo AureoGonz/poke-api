@@ -9,10 +9,10 @@ import retrofit2.http.Query;
 
 public interface ItemCategoryEndpoint {
 
-    @GET("item-category")
+    @GET("item-category/")
     Call<ResourceBatch> list(@Query("limit") Long limit, @Query("offset") Long offset);
 
-    @GET("item-category")
+    @GET("item-category/?limit=" + Long.MAX_VALUE + "&offset=0")
     Call<ResourceBatch> list();
 
     @GET("item-category/{id}")

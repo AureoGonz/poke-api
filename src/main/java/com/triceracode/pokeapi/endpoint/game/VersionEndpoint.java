@@ -9,10 +9,10 @@ import retrofit2.http.Query;
 
 public interface VersionEndpoint {
 
-    @GET("version")
+    @GET("version/")
     Call<ResourceBatch> list(@Query("limit") Long limit, @Query("offset") Long offset);
 
-    @GET("version")
+    @GET("version/?limit=" + Long.MAX_VALUE + "&offset=0")
     Call<ResourceBatch> list();
 
     @GET("version/{id}")

@@ -8,10 +8,10 @@ import retrofit2.http.Query;
 
 public interface PokemonEndpoint {
 
-    @GET("pokemon")
+    @GET("pokemon/")
     Call<ResourceBatch> list(@Query("limit") Long limit, @Query("offset") Long offset);
 
-    @GET("pokemon")
+    @GET("pokemon/?limit=" + Long.MAX_VALUE + "&offset=0")
     Call<ResourceBatch> list();
 
 }

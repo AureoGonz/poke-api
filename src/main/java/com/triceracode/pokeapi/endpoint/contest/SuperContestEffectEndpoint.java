@@ -9,10 +9,10 @@ import retrofit2.http.Query;
 
 public interface SuperContestEffectEndpoint {
 
-    @GET("super-contest-effect")
+    @GET("super-contest-effect/")
     Call<ResourceBatch> list(@Query("limit") Long limit, @Query("offset") Long offset);
 
-    @GET("super-contest-effect")
+    @GET("super-contest-effect/?limit=" + Long.MAX_VALUE + "&offset=0")
     Call<ResourceBatch> list();
 
     @GET("super-contest-effect/{id}")

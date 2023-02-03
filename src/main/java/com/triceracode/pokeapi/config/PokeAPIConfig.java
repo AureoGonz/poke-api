@@ -1,4 +1,4 @@
-package com.triceracode.pokeapi;
+package com.triceracode.pokeapi.config;
 
 import java.util.Objects;
 

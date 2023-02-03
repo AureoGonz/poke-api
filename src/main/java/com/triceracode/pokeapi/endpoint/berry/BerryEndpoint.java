@@ -9,10 +9,10 @@ import retrofit2.http.Query;
 
 public interface BerryEndpoint {
 
-    @GET("berry")
+    @GET("berry/")
     Call<ResourceBatch> list(@Query("limit") Long limit, @Query("offset") Long offset);
 
-    @GET("berry")
+    @GET("berry/?limit=" + Long.MAX_VALUE + "&offset=0")
     Call<ResourceBatch> list();
 
     @GET("berry/{id}")
