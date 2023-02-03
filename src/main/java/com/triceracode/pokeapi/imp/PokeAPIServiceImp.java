@@ -3,157 +3,205 @@ package com.triceracode.pokeapi.imp;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.triceracode.pokeapi.PokeAPIConfig;
 import com.triceracode.pokeapi.PokeAPIService;
-import com.triceracode.pokeapi.endpoint.ability.AbilityEndpoint;
-import com.triceracode.pokeapi.endpoint.berry.BerryEndpoint;
-import com.triceracode.pokeapi.endpoint.berry.BerryFirmnessEndpoint;
-import com.triceracode.pokeapi.endpoint.berry.BerryFlavorEndpoint;
-import com.triceracode.pokeapi.endpoint.contest.ContestEffectEndpoint;
-import com.triceracode.pokeapi.endpoint.contest.SuperContestEffectEndpoint;
-import com.triceracode.pokeapi.endpoint.contest.ContestTypeEndpoint;
-import com.triceracode.pokeapi.endpoint.encounter.EncounterConditionEndpoint;
-import com.triceracode.pokeapi.endpoint.encounter.EncounterConditionValueEndpoint;
-import com.triceracode.pokeapi.endpoint.encounter.EncounterMethodEndpoint;
-import com.triceracode.pokeapi.endpoint.evolution.EvolutionChainEndpoint;
-import com.triceracode.pokeapi.endpoint.evolution.EvolutionTriggerEndpoint;
-import com.triceracode.pokeapi.endpoint.game.GenerationEndpoint;
-import com.triceracode.pokeapi.endpoint.game.PokedexEndpoint;
-import com.triceracode.pokeapi.endpoint.game.VersionEndpoint;
-import com.triceracode.pokeapi.endpoint.game.VersionGroupEndpoint;
-import com.triceracode.pokeapi.endpoint.item.ItemAttributeEndpoint;
-import com.triceracode.pokeapi.endpoint.item.ItemCategoryEndpoint;
-import com.triceracode.pokeapi.endpoint.item.ItemEndpoint;
-import com.triceracode.pokeapi.endpoint.item.ItemPocketEndpoint;
-import com.triceracode.pokeapi.endpoint.language.LanguageEndpoint;
-import com.triceracode.pokeapi.endpoint.pokemon.PokemonEndpoint;
+import com.triceracode.pokeapi.endpoint.berry.*;
+import com.triceracode.pokeapi.endpoint.contest.*;
+import com.triceracode.pokeapi.endpoint.encounter.*;
+import com.triceracode.pokeapi.endpoint.evolution.*;
+import com.triceracode.pokeapi.endpoint.game.*;
+import com.triceracode.pokeapi.endpoint.item.*;
+import com.triceracode.pokeapi.endpoint.language.*;
+import com.triceracode.pokeapi.endpoint.pokemon.*;
+import okhttp3.Cache;
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.util.Objects;
+import java.io.File;
+import java.util.*;
 
 public class PokeAPIServiceImp implements PokeAPIService {
 
     private final Retrofit retrofit;
+    private final PokemonEndpoint pokemonEndpoint;
+    private final AbilityEndpoint abilityEndpoint;
+    private final BerryEndpoint berryEndpoint;
+    private final BerryFirmnessEndpoint berryFirmnessEndpoint;
+    private final BerryFlavorEndpoint berryFlavorEndpoint;
+    private final ContestTypeEndpoint contestTypeEndpoint;
+    private final ContestEffectEndpoint contestEffectEndpoint;
+    private final SuperContestEffectEndpoint superContestEffectEndpoint;
+    private final LanguageEndpoint languageEndpoint;
+    private final EncounterMethodEndpoint encounterMethodEndpoint;
+    private final EncounterConditionEndpoint encounterConditionEndpoint;
+    private final EncounterConditionValueEndpoint encounterConditionValueEndpoint;
+    private final EvolutionChainEndpoint evolutionChainEndpoint;
+    private final EvolutionTriggerEndpoint evolutionTriggerEndpoint;
+    private final GenerationEndpoint generationEndpoint;
+    private final PokedexEndpoint pokedexEndpoint;
+    private final VersionEndpoint versionEndpoint;
+    private final VersionGroupEndpoint versionGroupEndpoint;
+    private final ItemEndpoint itemEndpoint;
+    private final ItemAttributeEndpoint itemAttributeEndpoint;
+    private final ItemCategoryEndpoint itemCategoryEndpoint;
+    private final ItemPocketEndpoint itemPocketEndpoint;
 
-    public PokeAPIServiceImp() {
-        String urlBase = Objects.requireNonNullElse(System.getenv("POKE_API_URL"), "https://pokeapi.co/api/v2/");
+    public PokeAPIServiceImp(PokeAPIConfig config) {
+        String urlBase = Objects.requireNonNull(config.urlBase);
+        Cache cache = null;
+        if(config.cacheSize != null) {
+            File cacheDir = new File(config.cacheDir);
+            int cacheSize = config.cacheSize > 0 ? config.cacheSize : 10;
+            if(!cacheDir.exists()) cacheDir.mkdir();
+            cache = new Cache(cacheDir, cacheSize * 1024 * 1024);
+        }
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .cache(cache).build();
         Gson gson = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                 .create();
         this.retrofit = new Retrofit.Builder()
                 .baseUrl(urlBase)
+                .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
+        this.pokemonEndpoint = this.retrofit.create(PokemonEndpoint.class);
+        this.abilityEndpoint = this.retrofit.create(AbilityEndpoint.class);
+        this.berryEndpoint = this.retrofit.create(BerryEndpoint.class);
+        this.berryFirmnessEndpoint = this.retrofit.create(BerryFirmnessEndpoint.class);
+        this.berryFlavorEndpoint = this.retrofit.create(BerryFlavorEndpoint.class);
+        this.contestTypeEndpoint = this.retrofit.create(ContestTypeEndpoint.class);
+        this.contestEffectEndpoint = this.retrofit.create(ContestEffectEndpoint.class);
+        this.superContestEffectEndpoint = this.retrofit.create(SuperContestEffectEndpoint.class);
+        this.languageEndpoint = this.retrofit.create(LanguageEndpoint.class);
+        this.encounterMethodEndpoint = this.retrofit.create(EncounterMethodEndpoint.class);
+        this.encounterConditionEndpoint = this.retrofit.create(EncounterConditionEndpoint.class);
+        this.encounterConditionValueEndpoint = this.retrofit.create(EncounterConditionValueEndpoint.class);
+        this.evolutionChainEndpoint = this.retrofit.create(EvolutionChainEndpoint.class);
+        this.evolutionTriggerEndpoint = this.retrofit.create(EvolutionTriggerEndpoint.class);
+        this.generationEndpoint = this.retrofit.create(GenerationEndpoint.class);
+        this.pokedexEndpoint = this.retrofit.create(PokedexEndpoint.class);
+        this.versionEndpoint = this.retrofit.create(VersionEndpoint.class);
+        this.versionGroupEndpoint = this.retrofit.create(VersionGroupEndpoint.class);
+        this.itemEndpoint = this.retrofit.create(ItemEndpoint.class);
+        this.itemAttributeEndpoint = this.retrofit.create(ItemAttributeEndpoint.class);
+        this.itemCategoryEndpoint = this.retrofit.create(ItemCategoryEndpoint.class);
+        this.itemPocketEndpoint = this.retrofit.create(ItemPocketEndpoint.class);
+    }
+
+    public PokeAPIServiceImp() {
+        this(new PokeAPIConfig());
     }
 
     @Override
     public PokemonEndpoint pokemon() {
-        return retrofit.create(PokemonEndpoint.class);
+        return this.pokemonEndpoint;
     }
 
     @Override
     public AbilityEndpoint ability() {
-        return retrofit.create(AbilityEndpoint.class);
+        return this.abilityEndpoint;
     }
 
     @Override
     public BerryEndpoint berry() {
-        return retrofit.create(BerryEndpoint.class);
+        return this.berryEndpoint;
     }
 
     @Override
     public BerryFirmnessEndpoint berryFirmness() {
-        return retrofit.create(BerryFirmnessEndpoint.class);
+        return this.berryFirmnessEndpoint;
     }
 
     @Override
     public BerryFlavorEndpoint berryFlavor() {
-        return retrofit.create(BerryFlavorEndpoint.class);
+        return this.berryFlavorEndpoint;
     }
 
     @Override
     public ContestTypeEndpoint contestType() {
-        return retrofit.create(ContestTypeEndpoint.class);
+        return this.contestTypeEndpoint;
     }
 
     @Override
     public ContestEffectEndpoint contestEffect() {
-        return retrofit.create(ContestEffectEndpoint.class);
+        return this.contestEffectEndpoint;
     }
 
     @Override
     public SuperContestEffectEndpoint superContestEffect() {
-        return retrofit.create(SuperContestEffectEndpoint.class);
+        return this.superContestEffectEndpoint;
     }
 
     @Override
     public LanguageEndpoint language() {
-        return retrofit.create(LanguageEndpoint.class);
+        return this.languageEndpoint;
     }
 
     @Override
     public EncounterMethodEndpoint encounterMethod() {
-        return retrofit.create(EncounterMethodEndpoint.class);
+        return this.encounterMethodEndpoint;
     }
 
     @Override
     public EncounterConditionEndpoint encounterCondition() {
-        return retrofit.create(EncounterConditionEndpoint.class);
+        return this.encounterConditionEndpoint;
     }
 
     @Override
     public EncounterConditionValueEndpoint encounterConditionValue() {
-        return retrofit.create(EncounterConditionValueEndpoint.class);
+        return this.encounterConditionValueEndpoint;
     }
 
     @Override
     public EvolutionChainEndpoint evolutionChain() {
-        return retrofit.create(EvolutionChainEndpoint.class);
+        return this.evolutionChainEndpoint;
     }
 
     @Override
     public EvolutionTriggerEndpoint evolutionTrigger() {
-        return retrofit.create(EvolutionTriggerEndpoint.class);
+        return this.evolutionTriggerEndpoint;
     }
 
     @Override
     public GenerationEndpoint generation() {
-        return retrofit.create(GenerationEndpoint.class);
+        return this.generationEndpoint;
     }
 
     @Override
     public PokedexEndpoint pokedex() {
-        return retrofit.create(PokedexEndpoint.class);
+        return this.pokedexEndpoint;
     }
 
     @Override
     public VersionEndpoint version() {
-        return retrofit.create(VersionEndpoint.class);
+        return this.versionEndpoint;
     }
 
     @Override
     public VersionGroupEndpoint versionGroup() {
-        return retrofit.create(VersionGroupEndpoint.class);
+        return this.versionGroupEndpoint;
     }
 
     @Override
     public ItemEndpoint item() {
-        return retrofit.create(ItemEndpoint.class);
+        return this.itemEndpoint;
     }
 
     @Override
     public ItemAttributeEndpoint itemAttribute() {
-        return retrofit.create(ItemAttributeEndpoint.class);
+        return this.itemAttributeEndpoint;
     }
 
     @Override
     public ItemCategoryEndpoint itemCategory() {
-        return retrofit.create(ItemCategoryEndpoint.class);
+        return this.itemCategoryEndpoint;
     }
 
     @Override
     public ItemPocketEndpoint itemPocket() {
-        return retrofit.create(ItemPocketEndpoint.class);
+        return this.itemPocketEndpoint;
     }
 
 }

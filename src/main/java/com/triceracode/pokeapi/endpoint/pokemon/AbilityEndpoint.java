@@ -1,4 +1,4 @@
-package com.triceracode.pokeapi.endpoint.ability;
+package com.triceracode.pokeapi.endpoint.pokemon;
 
 import com.triceracode.pokeapi.model.resource.ability.Ability;
 import com.triceracode.pokeapi.model.ResourceBatch;
