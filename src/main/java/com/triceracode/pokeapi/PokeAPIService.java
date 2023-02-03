@@ -16,6 +16,10 @@ import com.triceracode.pokeapi.endpoint.game.GenerationEndpoint;
 import com.triceracode.pokeapi.endpoint.game.PokedexEndpoint;
 import com.triceracode.pokeapi.endpoint.game.VersionEndpoint;
 import com.triceracode.pokeapi.endpoint.game.VersionGroupEndpoint;
+import com.triceracode.pokeapi.endpoint.item.ItemAttributeEndpoint;
+import com.triceracode.pokeapi.endpoint.item.ItemCategoryEndpoint;
+import com.triceracode.pokeapi.endpoint.item.ItemEndpoint;
+import com.triceracode.pokeapi.endpoint.item.ItemPocketEndpoint;
 import com.triceracode.pokeapi.endpoint.language.LanguageEndpoint;
 import com.triceracode.pokeapi.endpoint.pokemon.PokemonEndpoint;
 
@@ -56,5 +60,13 @@ public interface PokeAPIService {
     VersionEndpoint version();
 
     VersionGroupEndpoint versionGroup();
+
+    ItemEndpoint item();
+
+    ItemAttributeEndpoint itemAttribute();
+
+    ItemCategoryEndpoint itemCategory();
+
+    ItemPocketEndpoint itemPocket();
 
 }
