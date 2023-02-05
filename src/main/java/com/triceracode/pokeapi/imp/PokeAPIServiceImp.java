@@ -68,6 +68,11 @@ public class PokeAPIServiceImp implements PokeAPIService {
     private final PokeathlonStatEndpoint pokeathlonStatEndpoint;
     private final StatEndpoint statEndpoint;
     private final TypeEndpoint typeEndpoint;
+    private final PokemonColorEndpoint pokemonColorEndpoint;
+    private final PokemonFormEndpoint pokemonFormEndpoint;
+    private final PokemonHabitatEndpoint pokemonHabitatEndpoint;
+    private final PokemonShapeEndpoint pokemonShapeEndpoint;
+    private final PokemonSpeciesEndpoint pokemonSpeciesEndpoint;
 
     public PokeAPIServiceImp(PokeAPIConfig config) {
         String urlBase = Objects.requireNonNull(config.urlBase);
@@ -129,6 +134,11 @@ public class PokeAPIServiceImp implements PokeAPIService {
         this.pokeathlonStatEndpoint = this.retrofit.create(PokeathlonStatEndpoint.class);
         this.statEndpoint = this.retrofit.create(StatEndpoint.class);
         this.typeEndpoint = this.retrofit.create(TypeEndpoint.class);
+        this.pokemonColorEndpoint = this.retrofit.create(PokemonColorEndpoint.class);
+        this.pokemonFormEndpoint = this.retrofit.create(PokemonFormEndpoint.class);
+        this.pokemonHabitatEndpoint = this.retrofit.create(PokemonHabitatEndpoint.class);
+        this.pokemonShapeEndpoint = this.retrofit.create(PokemonShapeEndpoint.class);
+        this.pokemonSpeciesEndpoint = this.retrofit.create(PokemonSpeciesEndpoint.class);
     }
 
     public PokeAPIServiceImp() {
@@ -338,6 +348,31 @@ public class PokeAPIServiceImp implements PokeAPIService {
     @Override
     public TypeEndpoint type() {
         return this.typeEndpoint;
+    }
+
+    @Override
+    public PokemonColorEndpoint pokemonColor() {
+        return this.pokemonColorEndpoint;
+    }
+
+    @Override
+    public PokemonFormEndpoint pokemonForm() {
+        return this.pokemonFormEndpoint;
+    }
+
+    @Override
+    public PokemonHabitatEndpoint pokemonHabitat() {
+        return this.pokemonHabitatEndpoint;
+    }
+
+    @Override
+    public PokemonShapeEndpoint pokemonShape() {
+        return this.pokemonShapeEndpoint;
+    }
+
+    @Override
+    public PokemonSpeciesEndpoint pokemonSpecies() {
+        return this.pokemonSpeciesEndpoint;
     }
 
 }

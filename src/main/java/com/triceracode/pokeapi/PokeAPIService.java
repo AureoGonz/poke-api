@@ -96,4 +96,14 @@ public interface PokeAPIService {
 
     TypeEndpoint type();
 
+    PokemonColorEndpoint pokemonColor();
+
+    PokemonFormEndpoint pokemonForm();
+
+    PokemonHabitatEndpoint pokemonHabitat();
+
+    PokemonShapeEndpoint pokemonShape();
+
+    PokemonSpeciesEndpoint pokemonSpecies();
+
 }
