@@ -9,6 +9,7 @@ import com.triceracode.pokeapi.endpoint.item.*;
 import com.triceracode.pokeapi.endpoint.language.*;
 import com.triceracode.pokeapi.endpoint.location.*;
 import com.triceracode.pokeapi.endpoint.machine.MachineEndpoint;
+import com.triceracode.pokeapi.endpoint.move.*;
 import com.triceracode.pokeapi.endpoint.pokemon.*;
 
 public interface PokeAPIService {
@@ -66,5 +67,17 @@ public interface PokeAPIService {
     RegionEndpoint region();
 
     MachineEndpoint machine();
+
+    MoveEndpoint move();
+
+    MoveAilmentEndpoint moveAilment();
+
+    MoveBattleStyleEndpoint moveBattleStyle();
+
+    MoveDamageClassEndpoint moveDamageClass();
+
+    MoveLearnMethodEndpoint moveLearnMethod();
+
+    MoveTargetEndpoint moveTarget();
 
 }

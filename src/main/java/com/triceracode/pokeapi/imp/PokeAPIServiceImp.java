@@ -14,6 +14,7 @@ import com.triceracode.pokeapi.endpoint.item.*;
 import com.triceracode.pokeapi.endpoint.language.*;
 import com.triceracode.pokeapi.endpoint.location.*;
 import com.triceracode.pokeapi.endpoint.machine.MachineEndpoint;
+import com.triceracode.pokeapi.endpoint.move.*;
 import com.triceracode.pokeapi.endpoint.pokemon.*;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
@@ -53,6 +54,12 @@ public class PokeAPIServiceImp implements PokeAPIService {
     private final PalParkAreaEndpoint palParkAreaEndpoint;
     private final RegionEndpoint regionEndpoint;
     private final MachineEndpoint machineEndpoint;
+    private final MoveEndpoint moveEndpoint;
+    private final MoveAilmentEndpoint moveAilmentEndpoint;
+    private final MoveBattleStyleEndpoint moveBattleStyleEndpoint;
+    private final MoveDamageClassEndpoint moveDamageClassEndpoint;
+    private final MoveLearnMethodEndpoint moveLearnMethodEndpoint;
+    private final MoveTargetEndpoint moveTargetEndpoint;
 
     public PokeAPIServiceImp(PokeAPIConfig config) {
         String urlBase = Objects.requireNonNull(config.urlBase);
@@ -100,6 +107,12 @@ public class PokeAPIServiceImp implements PokeAPIService {
         this.palParkAreaEndpoint = this.retrofit.create(PalParkAreaEndpoint.class);
         this.regionEndpoint = this.retrofit.create(RegionEndpoint.class);
         this.machineEndpoint = this.retrofit.create(MachineEndpoint.class);
+        this.moveEndpoint = this.retrofit.create(MoveEndpoint.class);
+        this.moveAilmentEndpoint = this.retrofit.create(MoveAilmentEndpoint.class);
+        this.moveBattleStyleEndpoint = this.retrofit.create(MoveBattleStyleEndpoint.class);
+        this.moveDamageClassEndpoint = this.retrofit.create(MoveDamageClassEndpoint.class);
+        this.moveLearnMethodEndpoint = this.retrofit.create(MoveLearnMethodEndpoint.class);
+        this.moveTargetEndpoint = this.retrofit.create(MoveTargetEndpoint.class);
     }
 
     public PokeAPIServiceImp() {
@@ -239,6 +252,36 @@ public class PokeAPIServiceImp implements PokeAPIService {
     @Override
     public MachineEndpoint machine() {
         return this.machineEndpoint;
+    }
+
+    @Override
+    public MoveEndpoint move() {
+        return this.moveEndpoint;
+    }
+
+    @Override
+    public MoveAilmentEndpoint moveAilment() {
+        return this.moveAilmentEndpoint;
+    }
+
+    @Override
+    public MoveBattleStyleEndpoint moveBattleStyle() {
+        return this.moveBattleStyleEndpoint;
+    }
+
+    @Override
+    public MoveDamageClassEndpoint moveDamageClass() {
+        return this.moveDamageClassEndpoint;
+    }
+
+    @Override
+    public MoveLearnMethodEndpoint moveLearnMethod() {
+        return this.moveLearnMethodEndpoint;
+    }
+
+    @Override
+    public MoveTargetEndpoint moveTarget() {
+        return this.moveTargetEndpoint;
     }
 
 }
