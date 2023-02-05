@@ -60,6 +60,14 @@ public class PokeAPIServiceImp implements PokeAPIService {
     private final MoveDamageClassEndpoint moveDamageClassEndpoint;
     private final MoveLearnMethodEndpoint moveLearnMethodEndpoint;
     private final MoveTargetEndpoint moveTargetEndpoint;
+    private final CharacteristicEndpoint characteristicEndpoint;
+    private final EggGroupEndpoint eggGroupEndpoint;
+    private final GenderEndpoint genderEndpoint;
+    private final GrowthRateEndpoint growthRateEndpoint;
+    private final NatureEndpoint natureEndpoint;
+    private final PokeathlonStatEndpoint pokeathlonStatEndpoint;
+    private final StatEndpoint statEndpoint;
+    private final TypeEndpoint typeEndpoint;
 
     public PokeAPIServiceImp(PokeAPIConfig config) {
         String urlBase = Objects.requireNonNull(config.urlBase);
@@ -113,6 +121,14 @@ public class PokeAPIServiceImp implements PokeAPIService {
         this.moveDamageClassEndpoint = this.retrofit.create(MoveDamageClassEndpoint.class);
         this.moveLearnMethodEndpoint = this.retrofit.create(MoveLearnMethodEndpoint.class);
         this.moveTargetEndpoint = this.retrofit.create(MoveTargetEndpoint.class);
+        this.characteristicEndpoint = this.retrofit.create(CharacteristicEndpoint.class);
+        this.eggGroupEndpoint = this.retrofit.create(EggGroupEndpoint.class);
+        this.genderEndpoint = this.retrofit.create(GenderEndpoint.class);
+        this.growthRateEndpoint = this.retrofit.create(GrowthRateEndpoint.class);
+        this.natureEndpoint = this.retrofit.create(NatureEndpoint.class);
+        this.pokeathlonStatEndpoint = this.retrofit.create(PokeathlonStatEndpoint.class);
+        this.statEndpoint = this.retrofit.create(StatEndpoint.class);
+        this.typeEndpoint = this.retrofit.create(TypeEndpoint.class);
     }
 
     public PokeAPIServiceImp() {
@@ -282,6 +298,46 @@ public class PokeAPIServiceImp implements PokeAPIService {
     @Override
     public MoveTargetEndpoint moveTarget() {
         return this.moveTargetEndpoint;
+    }
+
+    @Override
+    public CharacteristicEndpoint characteristic() {
+        return this.characteristicEndpoint;
+    }
+
+    @Override
+    public EggGroupEndpoint eggGroup() {
+        return this.eggGroupEndpoint;
+    }
+
+    @Override
+    public GenderEndpoint gender() {
+        return this.genderEndpoint;
+    }
+
+    @Override
+    public GrowthRateEndpoint growthRate() {
+        return this.growthRateEndpoint;
+    }
+
+    @Override
+    public NatureEndpoint nature() {
+        return this.natureEndpoint;
+    }
+
+    @Override
+    public PokeathlonStatEndpoint pokeathlonStat() {
+        return this.pokeathlonStatEndpoint;
+    }
+
+    @Override
+    public StatEndpoint stat() {
+        return this.statEndpoint;
+    }
+
+    @Override
+    public TypeEndpoint type() {
+        return this.typeEndpoint;
     }
 
 }

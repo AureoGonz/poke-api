@@ -1,4 +1,4 @@
-package com.triceracode.pokeapi.model.resource.ability;
+package com.triceracode.pokeapi.model.resource.pokemon;
 
 import com.triceracode.pokeapi.model.Name;
 import com.triceracode.pokeapi.model.NamedAPIResource;

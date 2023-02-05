@@ -2,7 +2,7 @@ package com.triceracode.pokeapi.model.resource.move;
 
 import com.triceracode.pokeapi.model.*;
 import com.triceracode.pokeapi.model.resource.Endpointable;
-import com.triceracode.pokeapi.model.resource.ability.AbilityEffectChange;
+import com.triceracode.pokeapi.model.resource.pokemon.AbilityEffectChange;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;

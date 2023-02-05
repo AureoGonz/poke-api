@@ -80,4 +80,20 @@ public interface PokeAPIService {
 
     MoveTargetEndpoint moveTarget();
 
+    CharacteristicEndpoint characteristic();
+
+    EggGroupEndpoint eggGroup();
+
+    GenderEndpoint gender();
+
+    GrowthRateEndpoint growthRate();
+
+    NatureEndpoint nature();
+
+    PokeathlonStatEndpoint pokeathlonStat();
+
+    StatEndpoint stat();
+
+    TypeEndpoint type();
+
 }

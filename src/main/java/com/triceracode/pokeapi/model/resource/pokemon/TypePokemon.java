@@ -1,4 +1,4 @@
-package com.triceracode.pokeapi.model.resource.ability;
+package com.triceracode.pokeapi.model.resource.pokemon;
 
 import com.triceracode.pokeapi.model.NamedAPIResource;
 import lombok.AllArgsConstructor;
@@ -8,9 +8,8 @@ import lombok.ToString;
 @ToString
 @Getter
 @AllArgsConstructor
-public class AbilityPokemon {
+public class TypePokemon {
 
-    private Boolean isHidden;
     private Integer slot;
     private NamedAPIResource pokemon;
 
