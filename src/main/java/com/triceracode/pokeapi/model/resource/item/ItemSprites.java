@@ -2,7 +2,6 @@ package com.triceracode.pokeapi.model.resource.item;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.ToString;
 
 @ToString

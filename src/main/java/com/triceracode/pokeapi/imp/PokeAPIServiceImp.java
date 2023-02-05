@@ -26,7 +26,6 @@ import java.util.*;
 
 public class PokeAPIServiceImp implements PokeAPIService {
 
-    private final Retrofit retrofit;
     private final PokemonEndpoint pokemonEndpoint;
     private final AbilityEndpoint abilityEndpoint;
     private final BerryEndpoint berryEndpoint;
@@ -80,65 +79,65 @@ public class PokeAPIServiceImp implements PokeAPIService {
         if(config.cacheSize != null) {
             File cacheDir = new File(config.cacheDir);
             int cacheSize = config.cacheSize > 0 ? config.cacheSize : 10;
-            if(!cacheDir.exists()) cacheDir.mkdir();
-            cache = new Cache(cacheDir, cacheSize * 1024 * 1024);
+            if(cacheDir.exists() || cacheDir.mkdir())
+                cache = new Cache(cacheDir, (long) cacheSize * 1024 * 1024);
         }
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .cache(cache).build();
         Gson gson = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                 .create();
-        this.retrofit = new Retrofit.Builder()
+        Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(urlBase)
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
-        this.pokemonEndpoint = this.retrofit.create(PokemonEndpoint.class);
-        this.abilityEndpoint = this.retrofit.create(AbilityEndpoint.class);
-        this.berryEndpoint = this.retrofit.create(BerryEndpoint.class);
-        this.berryFirmnessEndpoint = this.retrofit.create(BerryFirmnessEndpoint.class);
-        this.berryFlavorEndpoint = this.retrofit.create(BerryFlavorEndpoint.class);
-        this.contestTypeEndpoint = this.retrofit.create(ContestTypeEndpoint.class);
-        this.contestEffectEndpoint = this.retrofit.create(ContestEffectEndpoint.class);
-        this.superContestEffectEndpoint = this.retrofit.create(SuperContestEffectEndpoint.class);
-        this.languageEndpoint = this.retrofit.create(LanguageEndpoint.class);
-        this.encounterMethodEndpoint = this.retrofit.create(EncounterMethodEndpoint.class);
-        this.encounterConditionEndpoint = this.retrofit.create(EncounterConditionEndpoint.class);
-        this.encounterConditionValueEndpoint = this.retrofit.create(EncounterConditionValueEndpoint.class);
-        this.evolutionChainEndpoint = this.retrofit.create(EvolutionChainEndpoint.class);
-        this.evolutionTriggerEndpoint = this.retrofit.create(EvolutionTriggerEndpoint.class);
-        this.generationEndpoint = this.retrofit.create(GenerationEndpoint.class);
-        this.pokedexEndpoint = this.retrofit.create(PokedexEndpoint.class);
-        this.versionEndpoint = this.retrofit.create(VersionEndpoint.class);
-        this.versionGroupEndpoint = this.retrofit.create(VersionGroupEndpoint.class);
-        this.itemEndpoint = this.retrofit.create(ItemEndpoint.class);
-        this.itemAttributeEndpoint = this.retrofit.create(ItemAttributeEndpoint.class);
-        this.itemCategoryEndpoint = this.retrofit.create(ItemCategoryEndpoint.class);
-        this.itemPocketEndpoint = this.retrofit.create(ItemPocketEndpoint.class);
-        this.locationEndpoint = this.retrofit.create(LocationEndpoint.class);
-        this.locationAreaEndpoint = this.retrofit.create(LocationAreaEndpoint.class);
-        this.palParkAreaEndpoint = this.retrofit.create(PalParkAreaEndpoint.class);
-        this.regionEndpoint = this.retrofit.create(RegionEndpoint.class);
-        this.machineEndpoint = this.retrofit.create(MachineEndpoint.class);
-        this.moveEndpoint = this.retrofit.create(MoveEndpoint.class);
-        this.moveAilmentEndpoint = this.retrofit.create(MoveAilmentEndpoint.class);
-        this.moveBattleStyleEndpoint = this.retrofit.create(MoveBattleStyleEndpoint.class);
-        this.moveDamageClassEndpoint = this.retrofit.create(MoveDamageClassEndpoint.class);
-        this.moveLearnMethodEndpoint = this.retrofit.create(MoveLearnMethodEndpoint.class);
-        this.moveTargetEndpoint = this.retrofit.create(MoveTargetEndpoint.class);
-        this.characteristicEndpoint = this.retrofit.create(CharacteristicEndpoint.class);
-        this.eggGroupEndpoint = this.retrofit.create(EggGroupEndpoint.class);
-        this.genderEndpoint = this.retrofit.create(GenderEndpoint.class);
-        this.growthRateEndpoint = this.retrofit.create(GrowthRateEndpoint.class);
-        this.natureEndpoint = this.retrofit.create(NatureEndpoint.class);
-        this.pokeathlonStatEndpoint = this.retrofit.create(PokeathlonStatEndpoint.class);
-        this.statEndpoint = this.retrofit.create(StatEndpoint.class);
-        this.typeEndpoint = this.retrofit.create(TypeEndpoint.class);
-        this.pokemonColorEndpoint = this.retrofit.create(PokemonColorEndpoint.class);
-        this.pokemonFormEndpoint = this.retrofit.create(PokemonFormEndpoint.class);
-        this.pokemonHabitatEndpoint = this.retrofit.create(PokemonHabitatEndpoint.class);
-        this.pokemonShapeEndpoint = this.retrofit.create(PokemonShapeEndpoint.class);
-        this.pokemonSpeciesEndpoint = this.retrofit.create(PokemonSpeciesEndpoint.class);
+        this.pokemonEndpoint = retrofit.create(PokemonEndpoint.class);
+        this.abilityEndpoint = retrofit.create(AbilityEndpoint.class);
+        this.berryEndpoint = retrofit.create(BerryEndpoint.class);
+        this.berryFirmnessEndpoint = retrofit.create(BerryFirmnessEndpoint.class);
+        this.berryFlavorEndpoint = retrofit.create(BerryFlavorEndpoint.class);
+        this.contestTypeEndpoint = retrofit.create(ContestTypeEndpoint.class);
+        this.contestEffectEndpoint = retrofit.create(ContestEffectEndpoint.class);
+        this.superContestEffectEndpoint = retrofit.create(SuperContestEffectEndpoint.class);
+        this.languageEndpoint = retrofit.create(LanguageEndpoint.class);
+        this.encounterMethodEndpoint = retrofit.create(EncounterMethodEndpoint.class);
+        this.encounterConditionEndpoint = retrofit.create(EncounterConditionEndpoint.class);
+        this.encounterConditionValueEndpoint = retrofit.create(EncounterConditionValueEndpoint.class);
+        this.evolutionChainEndpoint = retrofit.create(EvolutionChainEndpoint.class);
+        this.evolutionTriggerEndpoint = retrofit.create(EvolutionTriggerEndpoint.class);
+        this.generationEndpoint = retrofit.create(GenerationEndpoint.class);
+        this.pokedexEndpoint = retrofit.create(PokedexEndpoint.class);
+        this.versionEndpoint = retrofit.create(VersionEndpoint.class);
+        this.versionGroupEndpoint = retrofit.create(VersionGroupEndpoint.class);
+        this.itemEndpoint = retrofit.create(ItemEndpoint.class);
+        this.itemAttributeEndpoint = retrofit.create(ItemAttributeEndpoint.class);
+        this.itemCategoryEndpoint = retrofit.create(ItemCategoryEndpoint.class);
+        this.itemPocketEndpoint = retrofit.create(ItemPocketEndpoint.class);
+        this.locationEndpoint = retrofit.create(LocationEndpoint.class);
+        this.locationAreaEndpoint = retrofit.create(LocationAreaEndpoint.class);
+        this.palParkAreaEndpoint = retrofit.create(PalParkAreaEndpoint.class);
+        this.regionEndpoint = retrofit.create(RegionEndpoint.class);
+        this.machineEndpoint = retrofit.create(MachineEndpoint.class);
+        this.moveEndpoint = retrofit.create(MoveEndpoint.class);
+        this.moveAilmentEndpoint = retrofit.create(MoveAilmentEndpoint.class);
+        this.moveBattleStyleEndpoint = retrofit.create(MoveBattleStyleEndpoint.class);
+        this.moveDamageClassEndpoint = retrofit.create(MoveDamageClassEndpoint.class);
+        this.moveLearnMethodEndpoint = retrofit.create(MoveLearnMethodEndpoint.class);
+        this.moveTargetEndpoint = retrofit.create(MoveTargetEndpoint.class);
+        this.characteristicEndpoint = retrofit.create(CharacteristicEndpoint.class);
+        this.eggGroupEndpoint = retrofit.create(EggGroupEndpoint.class);
+        this.genderEndpoint = retrofit.create(GenderEndpoint.class);
+        this.growthRateEndpoint = retrofit.create(GrowthRateEndpoint.class);
+        this.natureEndpoint = retrofit.create(NatureEndpoint.class);
+        this.pokeathlonStatEndpoint = retrofit.create(PokeathlonStatEndpoint.class);
+        this.statEndpoint = retrofit.create(StatEndpoint.class);
+        this.typeEndpoint = retrofit.create(TypeEndpoint.class);
+        this.pokemonColorEndpoint = retrofit.create(PokemonColorEndpoint.class);
+        this.pokemonFormEndpoint = retrofit.create(PokemonFormEndpoint.class);
+        this.pokemonHabitatEndpoint = retrofit.create(PokemonHabitatEndpoint.class);
+        this.pokemonShapeEndpoint = retrofit.create(PokemonShapeEndpoint.class);
+        this.pokemonSpeciesEndpoint = retrofit.create(PokemonSpeciesEndpoint.class);
     }
 
     public PokeAPIServiceImp() {

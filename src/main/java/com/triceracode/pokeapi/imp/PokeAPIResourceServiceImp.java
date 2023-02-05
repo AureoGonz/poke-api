@@ -18,7 +18,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class PokeAPIResourceServiceImp implements PokeAPIResourceService {
@@ -92,11 +91,11 @@ public class PokeAPIResourceServiceImp implements PokeAPIResourceService {
 
     private ResourceEndpoint getResourceEndpoint(Class<? extends Endpointable> clazz) {
         return retrofit(
-                upperCamelToLowerHiphen(clazz.getSimpleName()) + "/")
+                upperCamelToLowerHyphen(clazz.getSimpleName()) + "/")
                 .create(ResourceEndpoint.class);
     }
 
-    private static String upperCamelToLowerHiphen(String conv) {
+    private static String upperCamelToLowerHyphen(String conv) {
         String hyphen = Arrays.stream(conv.split("")).map(c -> {
             if(c.matches("[A-Z]")){
                 return "-" + c.toLowerCase();

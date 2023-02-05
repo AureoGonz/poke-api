@@ -1,6 +1,5 @@
 package com.triceracode.pokeapi.model.resource.pokemon;
 
-import com.triceracode.pokeapi.model.resource.Endpointable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
