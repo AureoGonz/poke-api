@@ -1,5 +1,7 @@
 package com.triceracode.pokeapi.config;
 
+import java.net.URI;
+import java.net.URL;
 import java.util.Objects;
 
 import static java.lang.System.*;

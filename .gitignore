@@ -41,3 +41,4 @@ bin/
 
 ### PokeApi ###
 .pokeCache
+gradle.properties

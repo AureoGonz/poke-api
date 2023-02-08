@@ -24,6 +24,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import java.io.File;
 import java.util.*;
 
+/**
+ * The type Poke api service implementation.
+ */
 public class PokeAPIServiceImp implements PokeAPIService {
 
     private final PokemonEndpoint pokemonEndpoint;
@@ -73,6 +76,12 @@ public class PokeAPIServiceImp implements PokeAPIService {
     private final PokemonShapeEndpoint pokemonShapeEndpoint;
     private final PokemonSpeciesEndpoint pokemonSpeciesEndpoint;
 
+    /**
+     * Instantiates a new Poke api service imp.
+     *
+     * @param config where indicate the url to request the PokeApi endpoints
+     * @see com.triceracode.pokeapi.config.PokeAPIConfig
+     */
     public PokeAPIServiceImp(PokeAPIConfig config) {
         String urlBase = Objects.requireNonNull(config.urlBase);
         Cache cache = null;
@@ -140,6 +149,9 @@ public class PokeAPIServiceImp implements PokeAPIService {
         this.pokemonSpeciesEndpoint = retrofit.create(PokemonSpeciesEndpoint.class);
     }
 
+    /**
+     * Instantiates a new Poke api service imp.
+     */
     public PokeAPIServiceImp() {
         this(new PokeAPIConfig());
     }
