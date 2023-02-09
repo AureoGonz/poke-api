@@ -32,7 +32,7 @@ public class PokeAPIConfig {
      *     <li>POKE_API_URL: for the urlBase</li>
      *     <li>POKE_API_CACHE_SIZE: for cacheSize</li>
      *     <li>POKE_API_CACHE_DIR: for cacheDir</li>
-     * </ul><
+     * </ul>
      */
     public PokeAPIConfig() {
         urlBase = Objects.requireNonNullElse(getenv("POKE_API_URL"), "https://pokeapi.co/api/v2/");
