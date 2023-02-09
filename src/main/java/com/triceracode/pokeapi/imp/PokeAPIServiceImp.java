@@ -25,7 +25,7 @@ import java.io.File;
 import java.util.*;
 
 /**
- * The type Poke api service implementation.
+ * The PokeAPIService implementation.
  */
 public class PokeAPIServiceImp implements PokeAPIService {
 

@@ -20,12 +20,20 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+/**
+ * The PokeAPIResourceService implementation.
+ */
 public class PokeAPIResourceServiceImp implements PokeAPIResourceService {
 
     private final String baseUrl;
     private final Gson gson;
     private final OkHttpClient okHttpClient;
 
+    /**
+     * Create an object with a defined Configuration.
+     *
+     * @param config the configuration for url base, cache size and directory
+     */
     public PokeAPIResourceServiceImp(PokeAPIConfig config) {
         this.baseUrl = config.urlBase;
         this.gson = new GsonBuilder()
@@ -42,11 +50,14 @@ public class PokeAPIResourceServiceImp implements PokeAPIResourceService {
                 .cache(cache).build();
     }
 
+    /**
+     * Initialize with the default configuration
+     */
     public PokeAPIResourceServiceImp() {
         this(new PokeAPIConfig());
     }
 
-    public Retrofit retrofit(String resource) {
+    private Retrofit retrofit(String resource) {
         return new Retrofit.Builder()
                 .baseUrl(this.baseUrl + resource)
                 .addConverterFactory(GsonConverterFactory.create(this.gson))
